@@ -26,7 +26,16 @@ TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
 
+try:
+    EMAIL_HOST_USER = os.environ['EMAIL_HOST_USER']
+    EMAIL_HOST_PASSWORD = os.environ['EMAIL_HOST_PASSWORD']
+except:
+    EMAIL_HOST_USER = ""
+    EMAIL_HOST_PASSWORD = ""
 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
 # Application definition
 
 INSTALLED_APPS = (
@@ -36,6 +45,16 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'stripe',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'south',
+    'profiles',
+    'contact',
+    'analytics',
+    'questions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,3 +99,56 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media')
+
+MEDIA_URL = '/media/'
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static', 'static-only')
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static', 'static'),
+)
+
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'static', 'templates'),
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    # Required by allauth template tags
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.request",
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = "/"
+
+SITE_ID = 1
+
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
+ACCOUNT_EMAIL_CONFIRMATION_ANONYMOUS_REDIRECT_URL = LOGIN_URL
+ACCOUNT_EMAIL_CONFIRMATION_AUTHENTICATED_REDIRECT_URL = LOGIN_REDIRECT_URL
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 3
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "optional" # choose one of "mandatory", "optional", or "none"
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "Subject Is: " # Subject Is: Confirm E-mail Address
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_REDIRECT_URL = LOGIN_URL
+ACCOUNT_SIGNUP_FORM_CLASS = None
+ACCOUNT_SIGNUP_PASSWORD_VERIFICATION = True
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_USERNAME_MIN_LENGTH = 3
+ACCOUNT_USERNAME_BLACKLIST = ['john']
+ACCOUNT_USERNAME_REQUIRED = True
