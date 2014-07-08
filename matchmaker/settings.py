@@ -52,9 +52,6 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'south',
     'profiles',
-    'contact',
-    'analytics',
-    'questions',
 )
 
 MIDDLEWARE_CLASSES = (
