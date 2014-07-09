@@ -14,7 +14,7 @@ class Address(models.Model):
     timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
 
     def __unicode__(self):
-        return self.user.username
+        return self.city
 
 
 class Job(models.Model):
@@ -37,3 +37,15 @@ class Job(models.Model):
 
     def __unicode__(self):
         return self.position
+
+
+class UserPicture(models.Model):
+    user = models.ForeignKey(User)
+    image = models.ImageField(upload_to='profiles/')
+
+    active = models.BooleanField(default=True)
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False)
+    timestamp = models.DateTimeField(auto_now=False, auto_now_add=True)
+
+    def __unicode__(self):
+        return str(self.image)

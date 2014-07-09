@@ -1,0 +1,9 @@
+Django==1.6.5
+South==1.0
+django-allauth==0.17.0
+oauthlib==0.6.3
+pillow==2.5.0
+python-openid==2.2.5
+requests==2.3.0
+requests-oauthlib==0.4.1
+stripe==1.18.0
