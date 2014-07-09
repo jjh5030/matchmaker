@@ -36,7 +36,16 @@ except:
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
-# Application definition
+
+ADMINS = (
+    # ('Your Name', 'your_email@example.com'),
+    ('John Doe', 'jjh5030@gmail.com'),
+)
+
+# We want to be notified of 404s via email to the MANAGERS
+SEND_BROKEN_LINK_EMAILS = True
+
+MANAGERS = ADMINS
 
 INSTALLED_APPS = (
     'django.contrib.admin',
