@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 def home(request):
-    return render_to_response('home.html', locals(), context_instance=RequestContext(request))
+    return render_to_response('base.html', locals(), context_instance=RequestContext(request))
 
 
 def all_users(request):
