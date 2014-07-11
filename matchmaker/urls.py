@@ -17,5 +17,5 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('allauth.urls')),
     url(r'^$', 'profiles.views.all_users', name="home"),
     url(r'^members/(?P<username>\w+)/$', 'profiles.views.single_user', name="single_user"),
-    url(r'^edit$', 'profiles.views.edit_profile', name="edit_profile"),
+    url(r'^edit/', 'profiles.views.edit_profile', name="edit_profile"),
 )

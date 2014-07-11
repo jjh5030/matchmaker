@@ -3,11 +3,11 @@
 {% block content %}
     <form method="POST" action=""> {% csrf_token %}
         <div class="row">
-            {{ address_form.as_p }}
+            {{ formset_a.as_p }}
         </div>
 
         <div class="row">
-            {{ job_form.as_p }}
+            {{ formset_j.as_p }}
         </div>
 
         <div class="row">
